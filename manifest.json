@@ -1,19 +1,18 @@
 {
-	"name": "Venge.io Resource Swapper",
-	"version": "0.0.9",
+	"name": "Venge Resource Swapper",
+	"version": "0.0.2",
 	"manifest_version": 2,
-	"description": "https://github.com/tehchy",
+	"description": "A venge swapper",
 	"permissions": [
 		"webRequest",
 		"webRequestBlocking",
 		"*://*.venge.io/*",
-		"http://127.0.0.1:8080/*",
-		"*://storage.googleapis.com/*"
+		"http://127.0.0.1:8080/*"
 	],
 	"web_accessible_resources": [
 		"*.obj", 
 		"*.fbx", 
-		"*.gltf", 
+		"*.glb", 
 		"*.png",
 		"*.jpeg",
 		"*.jpg",
@@ -25,10 +24,9 @@
 		"*.otf",
 		"*.ico",
 		"*.svg",
-		"*.txt",
-		"*.json"
+		"*.webp"
 	],
 	"background": {
 		"scripts": ["init.js"]
 	}
-}
+}   
