@@ -3,7 +3,7 @@ let request = chrome.webRequest.onBeforeRequest;
 chrome.runtime.getPackageDirectoryEntry((root) => {
     let reader = root.createReader();
     reader.readEntries((results) => {
-        searchDir(root, results.filter(x => !['init.js', 'manifest.json', 'README.md', 'charfix.js', '.git'].includes(x.name)));
+        searchDir(root, results.filter(x => !['init.js', 'manifest.json', 'README.md', 'LICENSE', '.git', 'charfix.js'].includes(x.name)));
     });
 });
 
@@ -11,6 +11,7 @@ function searchDir(parent, directories) {
     for (let directory of directories) {
         parent.getDirectory(directory.name, {create: false}, (dir) => {
             let reader = dir.createReader();
+
             reader.readEntries((results) => {
                 let newDirs = results.filter(x => x.isDirectory);
                 let files = results.filter(x => x.isFile);
@@ -21,10 +22,7 @@ function searchDir(parent, directories) {
                             redirectUrl:chrome.extension.getURL(file.fullPath.replace('/crxfs/', ''))
                         }
                     }, {
-                        urls: [
-						'*://*.venge.io/' + file.fullPath.replace('/crxfs/', '') + '*',
-						'*://*/*.venge.io/' + file.fullPath.replace('/crxfs/', '') + '*',
-						]
+                        urls: ['*://venge.io/' + file.fullPath.replace('/crxfs/', '') + '*']
                     }, ['blocking']);
                 }
             });
