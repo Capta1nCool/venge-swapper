@@ -1,7 +1,9 @@
 # How to install
-- Download the zipfile
-- Extract it 
-- Chose any mods you love and go the the "resource swapper" folder of it and copy the "files" folder and paste it in in the folder on this extension
+- Download [Zipfile](https://github.com/Classy08/venge-swapper/archive/refs/heads/main.zip)
+- Extract
+- Add your resources
 - Open `chrome://extensions/` in chrome
 - Drag and drop the this folder into that page
-- For player highlight install tampermonkey https://www.tampermonkey.net/ and then import the charfix.js in the tampermonkey and done you have a complete working mod on browser now.
+
+# How to use
+- To use a mod just find the "files" folder in it and paste it in the folder of this extension
