@@ -1,32 +1,42 @@
 {
-	"name": "Venge Resource Swapper",
-	"version": "0.0.2",
+	"name": "Venge.io Resource Swapper",
+	"version": "0.0.3",
 	"manifest_version": 2,
-	"description": "A venge swapper",
+	"description": "https://github.com/Classy08",
 	"permissions": [
 		"webRequest",
 		"webRequestBlocking",
 		"*://*.venge.io/*",
-		"http://127.0.0.1:8080/*"
+		"http://127.0.0.1:8080/*",
+		"*://storage.googleapis.com/*"
 	],
 	"web_accessible_resources": [
-		"*.obj", 
-		"*.fbx", 
-		"*.glb", 
+		"*.obj",
+		"*.fbx",
+		"*.gltf",
 		"*.png",
 		"*.jpeg",
 		"*.jpg",
 		"*.mp4",
 		"*.mp3",
 		"*.css",
-		"*.json",
 		"*.ttf",
 		"*.otf",
 		"*.ico",
 		"*.svg",
-		"*.webp"
+		"*.txt",
+		"*.glb"
 	],
 	"background": {
-		"scripts": ["init.js"]
+		"scripts": [
+			"init.js"
+		]
+	},
+	"browser_action": {
+		"default_popup": "popup.html",
+		"default_icon": "logo.png"
+	},
+	"icons": {
+		"128": "logo.png"
 	}
-}   
+}
