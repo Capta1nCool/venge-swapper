@@ -1,4 +1,4 @@
-The swapper by default comes with nio mod installed [https://github.com/Gionfra/Nio-mod-purple (credits to gionfra)]
+The swapper by default comes with Geno mod installed [https://github.com/Tomogunchi/GenoMod]
 
 _______________________________________________
 
