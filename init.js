@@ -1,5 +1,5 @@
 let request = chrome.webRequest.onBeforeRequest;
-let file_names = []
+let file_names = [];
 
 chrome.runtime.getPackageDirectoryEntry((root) => {
     let reader = root.createReader();
@@ -12,31 +12,33 @@ function searchDir(parent, directories) {
     for (let directory of directories) {
         parent.getDirectory(directory.name, { create: false }, (dir) => {
             var reader = dir.createReader();
-            //fix to the 100 folder bottelnecking with create reader function
-            const read = () => {
+            const readEntries = () => {
                 reader.readEntries((results) => {
                     if (results.length > 0) {
                         let newDirs = results.filter(x => x.isDirectory);
                         let files = results.filter(x => x.isFile);
+
                         if (newDirs.length) searchDir(dir, newDirs);
+
                         for (let file of files) {
+                            let filePath = file.fullPath.replace('/crxfs/', '');
                             request.addListener((details) => {
                                 return {
-                                    redirectUrl: chrome.extension.getURL(file.fullPath.replace('/crxfs/', ''))
+                                    redirectUrl: chrome.extension.getURL(filePath)
                                 }
                             }, {
                                 urls: [
-                                    '*://*.venge.io/' + file.fullPath.replace('/crxfs/', '') + '*',
+                                    `*://*.venge.io/${filePath}*`,
                                 ]
                             }, ['blocking']);
                         }
-                        read()
-                    } else {
+
+                        // Read remaining entries
+                        readEntries();
                     }
                 });
-            }
-            read()
+            };
+            readEntries();
         });
     }
 }
-//checks all folders
